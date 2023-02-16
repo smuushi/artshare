@@ -5,16 +5,11 @@ class CreateArtworks < ActiveRecord::Migration[7.0]
       t.string :image_url, unique: true, null: false
       t.references :artist, null: false, foreign_key: { to_table: :users }
 
-
-
       t.timestamps
     end
 
-    add_index :artworks, [:artist_id, :title], unique:true
+    add_index :artworks, [:artist_id, :title], unique: true
 
-    add_index :users, :username, unique:true
-
-
-
+    add_index :users, :username, unique: true
   end
 end
