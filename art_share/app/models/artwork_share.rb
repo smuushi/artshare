@@ -9,8 +9,8 @@
 #  updated_at :datetime         not null
 #
 class ArtworkShare < ApplicationRecord
+  validates_uniqueness_of :viewer_id, scope: :artwork_id, message: 'and artwork combination not unique'
   validates :artwork_id, :viewer_id, presence: true
-  validates :id, uniqueness: { scope: [:artwork_id, :viewer_id] }
 
   belongs_to :viewer,
              class_name: "User",
