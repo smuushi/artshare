@@ -18,4 +18,18 @@ class Artwork < ApplicationRecord
     primary_key: :id
   )
 
+  has_many(
+    :shares, 
+    foreign_key: :artwork_id,
+    primary_key: :id, 
+    class_name: :ArtworkShare,
+    dependent: :destroy
+  )
+
+  has_many(
+    :shared_viewers,
+    through: :shares, 
+    source: :viewer
+  )
+
 end
